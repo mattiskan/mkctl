@@ -1,0 +1,5 @@
+pyyaml
+ipdb
+mock
+pytest
+requests
