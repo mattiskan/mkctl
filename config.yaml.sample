@@ -1,0 +1,7 @@
+# config.yaml is covered by test, run 'tox -e utest' to validate this file
+
+stage_port: 8080
+
+services:
+  http_test_service: ./testing/services/http_server/service_conf.yaml
+

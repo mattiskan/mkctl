@@ -5,7 +5,7 @@ import time
 from src.impl import docker
 from src.impl.service import Service
 from src.mkctl import stage
-from src.global_config import GlobalConfig
+from src.global_conf import GlobalConf
 
 
 DIND_PORT = 12345
@@ -23,7 +23,7 @@ def sandbox_client():
         'docker:dind',
         bind_ports=[
             (DIND_PORT, DOCKER_PORT),
-            (GlobalConfig.stage_port, GlobalConfig.stage_port)
+            (GlobalConf.stage_port, GlobalConf.stage_port)
         ],
         privileged=True,
     )
@@ -58,5 +58,5 @@ def test_stage(sandbox_client, http_service):
 
     sandbox_client.wait_for(None)
     assert requests.get(
-        'http://localhost:{port}/'.format(port=GlobalConfig.stage_port),
+        'http://localhost:{port}/'.format(port=GlobalConf.stage_port),
     ).status_code == 200
