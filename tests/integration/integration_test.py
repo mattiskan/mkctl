@@ -50,7 +50,7 @@ def test_run_in_sandbox(sandbox_client):
 
 @pytest.fixture
 def http_service():
-    return Service('test_http', '')
+    return Service('test_http', 'testing/services/http_server/service_conf.yaml')
 
 
 def test_stage(sandbox_client, http_service):

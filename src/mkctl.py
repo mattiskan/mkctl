@@ -15,12 +15,10 @@ def stage(docker_client, service):
     build(docker_client, service)
     _unstage(docker_client, service)
     
-    sha = docker_client.build(
-        path='testing/services/http_server/',
-    )
+    sha = docker_client.build(service.build_path)
     docker_client.run(
         sha,
-        bind_ports=[(GlobalConf.stage_port, 80)],
+        bind_ports=[(GlobalConf.stage_port, service.port)],
         background=True,
     )
     print('{} has been staged on port'.format(service.name, service.port))
